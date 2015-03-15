@@ -93,7 +93,6 @@ class MovieController extends BaseController {
 
     public function getEdit($movie)
     {
-
         $title = "Update Movie";
         return View::make('site/movie/edit', compact('movie', 'title'));
     }
@@ -138,7 +137,7 @@ class MovieController extends BaseController {
                 ->withErrors($validator);
         }
     }
-    public function getView($movie)
+    public function getView1($movie)
     {
     	$title = $movie->name;
     	return View::make('site/movie/view', compact('movie','title'));
