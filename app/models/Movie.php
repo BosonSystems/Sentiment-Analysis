@@ -125,7 +125,7 @@ class Movie extends Eloquent {
         //preg_match_all('/\pL\pM*|./u', $string, $words); 
 
         //Get words in from string.
-        $string = mb_ereg_replace('[,.]',' ',$string);
+        $string = mb_ereg_replace('[,.\'-()*]',' ',$string);
         $words = array_filter(mb_split(' ', $string));
        
         switch ($format) {
