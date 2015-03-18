@@ -42,7 +42,7 @@
                                     <div class="col-xs-7">
                                         <select class="form-control js-word-type" data-index="{{ $i }}" name="word[{{$i}}][word_type_id]">
                                              @foreach ($word_types as $word_type)
-                                                <option value="{{{ $word_type->id }}}" {{{ ( $word_type->id == 3  ? ' selected="selected"' : '') }}} >{{{ $word_type->type }}}</option>
+                                                <option value="{{{ $word_type->id }}}" {{{ ( $word_type->id == 4  ? ' selected="selected"' : '') }}} >{{{ $word_type->type }}}</option>
                                             @endforeach
                                         </select>
                                      </select>

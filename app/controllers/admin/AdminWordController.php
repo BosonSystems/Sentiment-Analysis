@@ -289,7 +289,7 @@ class AdminWordController extends AdminController {
         {
             foreach ($inputs['word'] as $word) 
             {
-                if($word['word_type_id'] != 3)
+                if($word['word_type_id'] != 4)
                 {
                    $data = array();
                    $data['word'] = $word['word'];
