@@ -89,10 +89,12 @@
     							<span class="glyphicon glyphicon-picture"></span> Movies <span class="caret"></span>
     						</a>
     						<ul class="dropdown-menu">
-    							<li{{ (Request::is('admin/movie*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/movie') }}}"><span class="glyphicon glyphicon-picture"></span> Movies</a></li>
-    							<li{{ (Request::is('admin/category*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/category') }}}"><span class="glyphicon glyphicon-list"></span>Sentiment Categories</a></li>
+    							<li{{ (Request::is('admin/movie*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/movie') }}}"><span class="glyphicon glyphicon-picture"></span>&nbsp;Movies</a></li>
+    							<li{{ (Request::is('admin/category*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/category') }}}"><span class="glyphicon glyphicon-list"></span>&nbsp;Sentiment Categories</a></li>
+                                <li{{ (Request::is('admin/words*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/words') }}}"><span class="glyphicon glyphicon-list"></span>&nbsp;Words</a></li>
+                                <!-- 
                                 <li{{ (Request::is('admin/sentiment*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/sentiment') }}}"><span class="glyphicon glyphicon-list"></span>Sentiment Words</a></li>
-                                <li{{ (Request::is('admin/negative*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/negative') }}}"><span class="glyphicon glyphicon-list"></span>Negative Words</a></li>
+                                <li{{ (Request::is('admin/negative*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/negative') }}}"><span class="glyphicon glyphicon-list"></span>Negative Words</a></li> -->
     						</ul>
     					</li>
 
@@ -156,7 +158,7 @@
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
-
+     <script src="{{asset('assets/js/custom.js')}}"></script>
     <script type="text/javascript">
     	$('.wysihtml5').wysihtml5();
         $(prettyPrint);

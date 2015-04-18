@@ -95,6 +95,14 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::get('category/{category}/delete', 'AdminCategoryController@getDelete');
     Route::controller('category', 'AdminCategoryController');
 
+    Route::get('words', 'AdminWordController@getIndex');
+    Route::get('words/data', 'AdminWordController@getData');
+    Route::get('words/create', 'AdminWordController@getCreate');
+    Route::post('words/create', 'AdminWordController@postCreate');
+    Route::get('words/{word}/edit', 'AdminWordController@getEdit');
+    Route::post('words/{word}/edit', 'AdminWordController@postEdit');
+    Route::get('words/{word}/delete', 'AdminWordController@getDelete');
+
     Route::get('sentiment', 'AdminWordController@getSentiment');
     Route::get('sentiment/data', 'AdminWordController@getSentimentData');
     Route::get('sentiment/create', 'AdminWordController@getSentimentCreate');

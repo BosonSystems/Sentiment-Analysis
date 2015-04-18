@@ -162,20 +162,25 @@ class MovieController extends BaseController {
         $total = count($words);  
         $totalFind = 0;
         $totalNagFind = 0; 
-        $totalSentFind = 0; 
+        $totalSentFind = 0;
+        $text = $movie->review; 
         if(!empty($words))
         {
+            
             foreach ($words as $word) {
                  $findWord = $this->word->where('word',$word)->first(); 
                  if(!empty($findWord))
                  {
+                  
                     if($findWord->word_type_id == 2)
                     {
+                        $text = $this->highlight( $text,$findWord->word,'negative');
                         $nagativeWords[] = $findWord->word;
                         $totalFind++;
                     }
                     elseif($findWord->word_type_id == 1)
                     {
+                        $text = $this->highlight($text,$findWord->word,'sentiment');
                         $sentimentWords[] = $findWord->word;
                         $sentimentCategories[$findWord->category_id]['count'] = $sentimentCategories[$findWord->category_id]['count'] + 1; 
                         $totalFind++;
@@ -183,10 +188,20 @@ class MovieController extends BaseController {
                  }
             }
         }
+       
 
         $totalSentFind = count($sentimentWords);
         $totalNagFind = count($nagativeWords);
         $totalNewWords = $total - $totalFind;      
-        return View::make('site/movie/analyse', compact('movie', 'title','sentimentCategories','totalFind','totalSentFind','totalNagFind','totalNewWords','total'));
+        return View::make('site/movie/analyse', compact('movie','text', 'title','sentimentCategories','totalFind','totalSentFind','totalNagFind','totalNewWords','total','sentimentWords','nagativeWords'));
     }
+    function highlight($text='', $word='',$highlightClass = 'sentiment')
+    {
+      if(strlen($text) > 0 && strlen($word) > 0)
+      {
+        return (str_ireplace($word, "<span class='".$highlightClass."'>{$word}</span>", $text));
+      }
+       return ($text);
+    }
+
 }

@@ -23,6 +23,7 @@
                 <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
             </div>
         </div>
+       <?php /*?>
         <table id="sentiments" class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -69,6 +70,46 @@
             <tbody>
             </tbody>
         </table>
+        <?php*/ ?>
+         @if(!empty($newWords))
+            <?php $i =0 ?>
+            <div class="clearfix">
+            <div class="form-group col-md-6">
+                <label for="inputImg" class="control-label col-xs-3" style="text-align:left">Word Type</label>
+                <div class="col-xs-7">
+                    <select class="form-control js-word-type" data-index="1" name="word_type_id">
+                         @foreach ($word_types as $word_type)
+                            <option value="{{{ $word_type->id }}}" {{{ ( $word_type->id == 4  ? ' selected="selected"' : '') }}} >{{{ $word_type->type }}}</option>
+                        @endforeach
+                    </select>
+                 </select>
+                </div>
+            </div>
+            <div class="form-group js-category-1 hide  col-md-6">
+                <label for="inputImg" class="control-label col-xs-3"  style="text-align:left">Category</label>
+                <div class="col-xs-7">
+                    <select class="form-control  " name="category_id">
+                         @foreach ($categories as $category)
+                            <option value="{{{ $category->id }}}" {{{ ( $category->id == Input::old('category_id')  ? ' selected="selected"' : '') }}} >{{{ $category->meaning }}}</option>
+                        @endforeach
+                    </select>
+                 </div>
+            </div>
+            </div>
+            <div class="clearfix">
+            <ul class="unstyled" style="list-style:none">
+            @foreach($newWords as $word)
+            <?php $i++; ?>
+                <li class="col-md-4" style="padding:5px">                    
+
+                    {{Form::checkbox('word['.$i.'][word]',$word)}}&nbsp;{{$word}}
+                </li>
+            @endforeach
+            </ul>
+            </div>
+        @else
+            <tr><td cols='2'>No New Words Found</td></tr>
+        @endif
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
                 <button type="submit" class="btn btn-primary" style="float:right">Submit</button>

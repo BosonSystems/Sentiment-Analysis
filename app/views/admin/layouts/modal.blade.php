@@ -123,6 +123,7 @@
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
+    <script src="{{asset('assets/js/custom.js')}}"></script>
 
  <script type="text/javascript">
 $(document).ready(function(){

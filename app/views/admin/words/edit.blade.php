@@ -15,8 +15,17 @@
                         {{ $errors->first('word', '<span class="help-inline error-message">:message</span>') }}
                     </div>
                 </div>
-                @if($type == 1)
-                <div class="form-group">
+                 <div class="required form-group {{{ $errors->has('word_type_id') ? 'error' : '' }}}">
+                    <label class="col-md-2 control-label" for="word_type_id">Type</label>
+                    <div class="col-md-2">
+
+                        <select class="form-control word_type_id" id="word_type_id" name="word_type_id" >
+                            <option value="1" {{{ ( Input::old('word_type_id', $word->word_type_id) == 1  ? ' selected="selected"' : '') }}}>Sentiment</option>
+                            <option value="2" {{{ ( Input::old('word_type_id', $word->word_type_id)  == 2 ? ' selected="selected"' : '') }}}>Negative</option>                            
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group  clsWordCategory {{ Input::old('word_type_id', $word->word_type_id) == 1 || Input::old('word_type_id', $word->word_type_id) == ''?"":"hide" }}">
                     <label for="inputImg" class="control-label col-xs-2">Sentiment Category</label>
                     <div class="col-xs-10">
                        <select class="form-control" name="category_id" id="category_id">
@@ -27,7 +36,7 @@
                         </select>
                     </div>
                 </div>
-                @endif
+               
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
                         <input type="hidden" name="id" value="{{$word->id}}">
