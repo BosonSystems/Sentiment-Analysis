@@ -26,7 +26,7 @@ class AdminCategoryController extends AdminController {
     }
     public function getData()
     {
-        $categories = Category::select(array('categories.id', 'categories.meaning','categories.is_active', 'categories.created_at'))->orderBy('categories.id','asc');//,'category.review'
+        $categories = Category::select(array('categories.id', 'categories.meaning','categories.color','categories.is_active', 'categories.created_at'))->orderBy('categories.id','asc');//,'category.review'
 
         return Datatables::of($categories)       
 
@@ -67,6 +67,7 @@ class AdminCategoryController extends AdminController {
         $rules = array(
             'meaning' => 'required',            
             'is_active' => 'required',
+            'color' => 'required',
         );
         $messages = array(
             'required' => 'Required',
@@ -79,6 +80,7 @@ class AdminCategoryController extends AdminController {
             $inputs = Input::except('csrf_token');
             $this->category->meaning = $inputs['meaning'];            
             $this->category->is_active = $inputs['is_active'];
+            $this->category->color = $inputs['color'];
             $this->category->save();
             if ($this->category->id)
             {
@@ -105,6 +107,7 @@ class AdminCategoryController extends AdminController {
         $rules = array(
             'meaning' => 'required',                        
             'is_active' => 'required',
+             'color' => 'required',
         );
         $messages = array(
             'required' => 'Required',
@@ -117,6 +120,7 @@ class AdminCategoryController extends AdminController {
             $inputs = Input::except('csrf_token');
             $category->meaning = $inputs['meaning'];           
             $category->is_active = $inputs['is_active'];
+            $category->color = $inputs['color'];
             $category->save();
             if ($category->id)
             {
@@ -126,7 +130,7 @@ class AdminCategoryController extends AdminController {
         else
         {
           
-            return Redirect::to('admin/category/create')->withInput()
+            return Redirect::to('admin/category/' . $category->id . '/edit')->withInput()
                 ->withErrors($validator);
         }
     }

@@ -23,6 +23,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="inputName" class="control-label col-xs-2">Color</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" id="inputColor" name="color" placeholder="Color">
+                        {{ $errors->first('color', '<span class="help-inline error-message">:message</span>') }}
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

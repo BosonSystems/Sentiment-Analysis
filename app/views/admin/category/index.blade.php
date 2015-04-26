@@ -20,7 +20,8 @@
     <table id="categories" class="table table-striped table-hover">
         <thead>
             <tr>
-                <th class="col-md-2">Meaning</th>                
+                <th class="col-md-2">Meaning</th> 
+                <th class="col-md-2">Background Color</th>               
                 <th class="col-md-2">Active?</th>
                 <th class="col-md-2">{{{ Lang::get('admin/users/table.created_at') }}}</th>
                 <th class="col-md-2">{{{ Lang::get('table.actions') }}}</th>

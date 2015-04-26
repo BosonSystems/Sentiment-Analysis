@@ -168,26 +168,30 @@ class MovieController extends BaseController {
         {
             
             foreach ($words as $word) {
-                 $findWord = $this->word->where('word',$word)->first(); 
+                 //$findWord = $this->word->where('word',$word)->first(); 
+                  $findWord = $this->word->where('word','like',$word.'%')->first(); 
                  if(!empty($findWord))
                  {
                   
                     if($findWord->word_type_id == 2)
                     {
-                        $text = $this->highlight( $text,$findWord->word,'negative');
+                        $text = $this->highlight( $text,$findWord->word,"style='background:#f68686'");
                         $nagativeWords[] = $findWord->word;
                         $totalFind++;
                     }
                     elseif($findWord->word_type_id == 1)
                     {
-                        $text = $this->highlight($text,$findWord->word,'sentiment');
+                        //print_r($findWord->category);
+                        $text = $this->highlight($text,$findWord->word,"style='background:#".$findWord->category->color."'");
                         $sentimentWords[] = $findWord->word;
-                        $sentimentCategories[$findWord->category_id]['count'] = $sentimentCategories[$findWord->category_id]['count'] + 1; 
+                        $sentimentCategories[$findWord->category_id]['count'] = $sentimentCategories[$findWord->category_id]['count'] + 1;
+                        $sentimentCategories[$findWord->category_id]['color'] =  $findWord->category->color;
                         $totalFind++;
                     }
                  }
             }
         }
+       // exit;
        
 
         $totalSentFind = count($sentimentWords);
@@ -199,7 +203,7 @@ class MovieController extends BaseController {
     {
       if(strlen($text) > 0 && strlen($word) > 0)
       {
-        return (str_ireplace($word, "<span class='".$highlightClass."'>{$word}</span>", $text));
+        return (str_ireplace($word, "<span class='highlight' ".$highlightClass."'>{$word}</span>", $text));
       }
        return ($text);
     }

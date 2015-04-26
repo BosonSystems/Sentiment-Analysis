@@ -67,14 +67,18 @@
 						}
 						
 					}
+				?>
+				<span class="sentiment" style="padding: 0px 9px;background:<?php echo '#'.$category['color']; ?>"></span>
+				<?php
+					echo $percent_friendly.' '.$category['name'];
 
 					$i++;
 				?> 
 			</div>
 
 		@endforeach
-		<span class="sentiment" style="padding: 0px 9px;"></span>
-				{{number_format( $total_percent * 100, 2 ) . '%'}} Good Sentiment mixed with {{$mixed}}
+		
+				<!-- {{number_format( $total_percent * 100, 2 ) . '%'}} Good Sentiment mixed with {{$mixed}} -->
 	@endif
 	<br>
 	<span class="negative" style="padding: 0px 9px;"></span>			

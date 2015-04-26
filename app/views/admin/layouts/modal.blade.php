@@ -50,6 +50,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/colorpicker.css')}}">
+   <!--  <link rel="stylesheet" href="{{asset('assets/css/layout.css')}}">   -->  
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
 
@@ -123,11 +125,33 @@
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
+
+    <script src="{{asset('assets/js/colorpicker.js')}}"></script>
+
+   <!-- <script src="{{asset('assets/js/eye.js')}}"></script>
+    <script src="{{asset('assets/js/utils.js')}}"></script>
+    <script src="{{asset('assets/js/layout.js?ver=1.0.2')}}"></script> -->
+
     <script src="{{asset('assets/js/custom.js')}}"></script>
 
  <script type="text/javascript">
+
 $(document).ready(function(){
+	$('#inputColor').ColorPicker({
+		onSubmit: function(hsb, hex, rgb, el) {
+			$(el).val(hex);
+			$(el).ColorPickerHide();
+		},
+		onBeforeShow: function () {
+			$(this).ColorPickerSetColor(this.value);
+		}
+	})
+	.bind('keyup', function(){
+		$(this).ColorPickerSetColor(this.value);
+	});
+	
 $('.close_popup').click(function(){
+
 parent.oTable.fnReloadAjax();
 parent.jQuery.fn.colorbox.close();
 return false;

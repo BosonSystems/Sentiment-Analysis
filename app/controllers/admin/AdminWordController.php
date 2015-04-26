@@ -406,9 +406,10 @@ class AdminWordController extends AdminController {
         if(!empty($words))
         {
             foreach ($words as $word) {
-                 $findWord = $this->word->where('word',$word)->first(); 
+                 //$findWord = $this->word->where('word',$word)->first(); 
+                 $findWord = $this->word->where('word','like',$word.'%')->first(); 
                  if(empty($findWord))
-                 {
+                 {                   
                     $newWords[] = $word;
                  }
             }
