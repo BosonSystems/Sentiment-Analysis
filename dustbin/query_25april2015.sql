@@ -1,0 +1,1 @@
+ALTER TABLE `categories` ADD `color` VARCHAR(6) NULL ;
